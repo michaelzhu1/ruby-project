@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>NinetyNineCats</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+  </head>
+
+  <body>
+    <!-- <%# byebug %> -->
+    <% if !current_user.nil? %>
+      <h4>Welcome <%= current_user.user_name %></h4>
+      <%= button_to "Log out", session_url, method: "delete" %>
+      <% else %>
+      <%= button_to "Log in", new_session_url, method: "get" %>
+      <%= button_to "Sign up", new_user_url, method: "get" %>
+    <% end %>
+    <%= render "shared/errors" %>
+  <%= yield %>
+  </body>
+</html>
